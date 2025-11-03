@@ -1,0 +1,21 @@
+{
+  "name": "MV Consulting Chile",
+  "short_name": "MV Consulting",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0A2140",
+  "description": "Asesoría contable y tributaria personalizada para emprendedores, profesionales y pymes. Cumplimiento garantizado con el SII.",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "img/logo-mv.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
