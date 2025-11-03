@@ -1,54 +1,137 @@
-/* ==== FONDOS DE SECCIÓN ==== */
+/* MV CONSULTING CHILE — v1.3 */
 
-.hero-section {
-  background: url('img/hero_fondo.jpg') no-repeat center center/cover;
-  color: white;
-  text-align: center;
-  padding: 160px 20px;
-  position: relative;
+:root{
+  --azul: #0A2140;
+  --verde: #007B56;
+  --gris: #444;
+  --gris-fondo: #f5f5f5;
+  --blanco: #fff;
+  --radius: 10px;
+  --shadow: 0 8px 24px rgba(0,0,0,.12);
+  --t: .25s ease;
 }
 
-.quienes-somos-section {
-  background: url('img/quienes_somos.jpg') no-repeat center center/cover;
-  color: #222;
-  padding: 100px 20px;
-  position: relative;
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  color:var(--gris);
+  background:var(--blanco);
+  line-height:1.6;
 }
 
-.planes-servicios-section {
-  background: url('img/planes_servicios.jpg') no-repeat center center/cover;
-  color: #fff;
-  padding: 100px 20px;
-  position: relative;
+/* Header */
+.header{
+  position:sticky; top:0; z-index:1000;
+  background:var(--azul);
+  display:flex; justify-content:space-between; align-items:center;
+  padding:.75rem 1rem;
+}
+.logo{height:44px; display:block}
+.nav a{
+  color:#fff; text-decoration:none; margin-left:1rem; font-weight:600;
+  padding:.35rem .4rem; border-radius:6px; transition:color var(--t),background var(--t);
+}
+.nav a:hover{background:rgba(255,255,255,.1); color:#d6fff3}
+.brand{display:flex; align-items:center; gap:.5rem}
+
+/* Generic layout */
+.section{position:relative; padding:84px 18px}
+.container{max-width:1100px; margin:0 auto}
+.center{text-align:center}
+
+/* Buttons & links */
+.btn{
+  display:inline-block; font-weight:700; text-decoration:none;
+  padding:.85rem 1.2rem; border-radius:10px; transition:transform var(--t),opacity var(--t),background var(--t);
+}
+.btn-primary{background:var(--verde); color:#fff}
+.btn-primary:hover{transform:translateY(-2px); opacity:.95}
+.btn-outline{border:2px solid #fff; color:#fff}
+.btn-outline:hover{background:rgba(255,255,255,.12)}
+
+.link{color:var(--verde); text-decoration:none; font-weight:700}
+.link:hover{text-decoration:underline}
+
+/* Hero */
+.hero-section{
+  min-height:72vh;
+  display:flex; align-items:center; justify-content:center;
+  text-align:center; color:#fff;
+  background: url('img/hero_fondo.jpg') center/cover no-repeat;
+}
+.hero-section::before{
+  content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(10,33,64,.55), rgba(0,123,86,.45));
+}
+.hero-content{position:relative; z-index:1}
+.hero-content h1{font-size:clamp(28px,5vw,44px); margin:0 0 .5rem}
+.hero-content p{font-size:clamp(16px,2.4vw,20px); max-width:800px; margin:0 auto 1.25rem}
+.actions{display:flex; gap:.75rem; justify-content:center; flex-wrap:wrap}
+
+/* Background sections (with photos) */
+.bg-photo{color:#fff}
+.quienes-somos-section{
+  background: url('img/quienes_somos.jpg') center/cover no-repeat fixed;
+}
+.planes-servicios-section{
+  background: url('img/planes_servicios.jpg') center/cover no-repeat fixed;
+}
+.recursos-guias-section{
+  background: url('img/recursos_guias.jpg') center/cover no-repeat fixed;
+}
+.contacto-section{
+  background: url('img/contacto.jpg') center/cover no-repeat;
 }
 
-.recursos-guias-section {
-  background: url('img/recursos_guias.jpg') no-repeat center center/cover;
-  color: #fff;
-  padding: 100px 20px;
-  position: relative;
+/* Overlay for bg-photo sections */
+.bg-photo::before{
+  content:""; position:absolute; inset:0; background:rgba(0,0,0,.42);
+}
+.bg-photo > .container{position:relative; z-index:1}
+
+/* Headings */
+h2{
+  color:#fff; text-align:center;
+  font-size:clamp(22px,3.8vw,32px);
+  margin:0 0 14px;
 }
 
-.contacto-section {
-  background: url('img/contacto.jpg') no-repeat center center/cover;
-  color: white;
-  text-align: center;
-  padding: 120px 20px;
-  position: relative;
+/* Cards (planes) */
+.cards{
+  list-style:none; margin:22px 0 10px; padding:0;
+  display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px;
 }
+.card{
+  background:rgba(255,255,255,.9); color:#122;
+  border-radius:12px; padding:18px 16px; box-shadow:var(--shadow);
+  backdrop-filter:saturate(130%) blur(2px);
+}
+.card h3{margin:0 0 .35rem; font-size:1.15rem; color:#0b2a4a}
+.card .price{margin:.4rem 0 0; font-weight:800; color:#0a6a50}
 
-/* Suaviza legibilidad con superposición */
-section::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.35);
-  z-index: 0;
+/* Bulleted list */
+.bullets{max-width:900px; margin:12px auto 0; padding-left:18px}
+.bullets li{margin:.25rem 0}
+
+/* FAQ */
+.faq details{
+  background:rgba(255,255,255,.92); color:#123; border-radius:10px;
+  padding:12px 14px; margin:10px 0; box-shadow:var(--shadow)
 }
-section > * {
-  position: relative;
-  z-index: 1;
+.faq summary{cursor:pointer; font-weight:800; color:#0b2a4a}
+.faq p{margin:.5rem 0 0}
+
+/* Footer */
+.footer{
+  background:var(--azul); color:#fff; text-align:center; padding:22px 14px
+}
+.footer-logo{height:42px; filter:brightness(0) invert(1); display:block; margin:0 auto 8px}
+
+/* Responsive */
+@media (max-width: 900px){
+  .cards{grid-template-columns:1fr}
+  .header{flex-wrap:wrap; gap:.5rem}
+  .nav{width:100%; display:flex; justify-content:center; flex-wrap:wrap}
+  .nav a{margin:.25rem .5rem}
 }
