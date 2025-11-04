@@ -1,4 +1,4 @@
-/* MV CONSULTING CHILE — v1.3 */
+/* MV CONSULTING CHILE — v1.6 */
 
 :root{
   --azul: #0A2140;
@@ -21,12 +21,18 @@ body{
   line-height:1.6;
 }
 
+/* Fix para scroll offset - evita que header tape títulos */
+section[id]{
+  scroll-margin-top: 80px;
+}
+
 /* Header */
 .header{
   position:sticky; top:0; z-index:1000;
   background:var(--azul);
   display:flex; justify-content:space-between; align-items:center;
   padding:.75rem 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,.1);
 }
 .logo{height:44px; display:block}
 .nav a{
@@ -65,6 +71,14 @@ body{
   content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(10,33,64,.55), rgba(0,123,86,.45));
 }
 .hero-content{position:relative; z-index:1}
+.brand-name{
+  font-size:clamp(18px,3vw,24px); 
+  font-weight:700; 
+  color:#d6fff3; 
+  margin:0 0 .5rem;
+  text-transform:uppercase;
+  letter-spacing:1px;
+}
 .hero-content h1{font-size:clamp(28px,5vw,44px); margin:0 0 .5rem}
 .hero-content p{font-size:clamp(16px,2.4vw,20px); max-width:800px; margin:0 auto 1.25rem}
 .actions{display:flex; gap:.75rem; justify-content:center; flex-wrap:wrap}
@@ -86,7 +100,7 @@ body{
 
 /* Overlay for bg-photo sections */
 .bg-photo::before{
-  content:""; position:absolute; inset:0; background:rgba(0,0,0,.42);
+  content:""; position:absolute; inset:0; background:rgba(0,0,0,.5);
 }
 .bg-photo > .container{position:relative; z-index:1}
 
@@ -106,6 +120,11 @@ h2{
   background:rgba(255,255,255,.9); color:#122;
   border-radius:12px; padding:18px 16px; box-shadow:var(--shadow);
   backdrop-filter:saturate(130%) blur(2px);
+  transition: transform var(--t), box-shadow var(--t);
+}
+.card:hover{
+  transform:translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0,0,0,.18);
 }
 .card h3{margin:0 0 .35rem; font-size:1.15rem; color:#0b2a4a}
 .card .price{margin:.4rem 0 0; font-weight:800; color:#0a6a50}
@@ -114,24 +133,63 @@ h2{
 .bullets{max-width:900px; margin:12px auto 0; padding-left:18px}
 .bullets li{margin:.25rem 0}
 
-/* FAQ */
-.faq details{
-  background:rgba(255,255,255,.92); color:#123; border-radius:10px;
-  padding:12px 14px; margin:10px 0; box-shadow:var(--shadow)
+/* FAQ Section */
+.faq-section{
+  background: var(--gris-fondo);
+  color: var(--gris);
 }
-.faq summary{cursor:pointer; font-weight:800; color:#0b2a4a}
-.faq p{margin:.5rem 0 0}
+.faq-section h2{
+  color: var(--azul);
+}
+
+/* FAQ */
+.faq{
+  max-width:900px;
+  margin:20px auto 0;
+}
+.faq details{
+  background:#fff; color:#123; border-radius:10px;
+  padding:14px 16px; margin:12px 0; box-shadow:var(--shadow);
+  transition: box-shadow var(--t);
+}
+.faq details:hover{
+  box-shadow: 0 6px 20px rgba(0,0,0,.15);
+}
+.faq summary{cursor:pointer; font-weight:800; color:#0b2a4a; font-size:1.05rem}
+.faq p{margin:.6rem 0 0; line-height:1.7}
 
 /* Footer */
 .footer{
-  background:var(--azul); color:#fff; text-align:center; padding:22px 14px
+  background:var(--azul); color:#fff; text-align:center; padding:28px 14px
 }
-.footer-logo{height:42px; filter:brightness(0) invert(1); display:block; margin:0 auto 8px}
+.footer-logo{height:46px; filter:brightness(0) invert(1); display:block; margin:0 auto 10px}
+.footer p{margin:0; font-size:.9rem}
 
 /* Responsive */
 @media (max-width: 900px){
   .cards{grid-template-columns:1fr}
-  .header{flex-wrap:wrap; gap:.5rem}
+  .header{
+    flex-wrap:wrap; 
+    gap:.5rem;
+    padding:.5rem .8rem; /* Header más delgado en móvil */
+  }
+  .logo{height:38px;} /* Logo más pequeño en móvil */
   .nav{width:100%; display:flex; justify-content:center; flex-wrap:wrap}
-  .nav a{margin:.25rem .5rem}
+  .nav a{margin:.25rem .5rem; font-size:.9rem}
+  
+  /* Desactivar parallax en móvil para mejor performance */
+  .bg-photo{
+    background-attachment: scroll !important;
+  }
+  
+  /* Ajustar scroll offset para header más pequeño */
+  section[id]{
+    scroll-margin-top: 65px;
+  }
+}
+
+@media (max-width: 600px){
+  .section{padding:60px 16px}
+  .hero-section{min-height:65vh}
+  .brand-name{font-size:16px}
 }
